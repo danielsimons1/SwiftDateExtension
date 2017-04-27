@@ -174,4 +174,12 @@ public extension Date {
     public var second: UInt {
         return UInt(NSCalendar.current.component(.second, from: self))
     }
+	
+    private struct Gregorian {
+        static let calendar = Calendar(identifier: .gregorian)
+    }
+    
+    public var startOfWeek: Date? {
+        return Gregorian.calendar.date(from: Gregorian.calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+    }
 }
